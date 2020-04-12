@@ -7,6 +7,8 @@ const app = express();
 
 app.use(bodyParser.json());
 
+// #4 Types & Data
+
 // below is for when first starting up to make sure connected
 // app.get('/', (req, res, next) => {
 
@@ -18,6 +20,14 @@ app.use(bodyParser.json());
 // be called /api or what ever
 app.use('/graphql', graphqlHttp({
     schema: buildSchema(`
+        type Event {
+            _id: ID!
+            title: String!
+            description: String!
+            price: Float!
+            date: String!
+        }
+
         type RootQuery {
             events: [String!]!
         }
