@@ -23,9 +23,10 @@ app.use(bodyParser.json());
 
 // below the one endpoint for graphql typically named /graphql but could 
 // be called /api or what ever
-app.use('/graphql', graphqlHttp({
-    schema: buildSchema(`
-        type Event {
+app.use('/graphql', 
+    graphqlHttp({
+        schema: buildSchema(`
+         type Event {
             _id: ID!
             title: String!
             description: String!
@@ -33,11 +34,22 @@ app.use('/graphql', graphqlHttp({
             date: String!
         }
 
+        type User {
+            _id: ID!
+            email: String!
+            password: String
+        }
+
         input EventInput {
             title: String!
             description: String!
             price: Float!
             date: String!
+        }
+
+        input UserInput {
+            email: String!
+            password: String!
         }
 
         type RootQuery {
